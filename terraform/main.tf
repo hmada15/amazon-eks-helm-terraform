@@ -15,3 +15,16 @@ module "eks" {
   eks_name        = var.eks_name
   terraform_tags  = var.terraform_tags
 }
+
+module "k8s" {
+  source = "./modules/k8s"
+  providers = {
+    kubectl = kubectl
+  }
+  env                 = var.env
+  terraform_tags      = var.terraform_tags
+  eks_cluster_name    = module.eks.eks_cluster_name
+  vpc_id              = module.vpc.vpc_id
+  eks_cluster_node_id = module.eks.eks_cluster_node_id
+  region              = var.region
+}
