@@ -17,3 +17,7 @@ spec:
                 name: webapp
                 port:
                   number: 8080
+  tls:
+    - hosts:
+        - demo.example.com
+      secretName: demo-example.com
