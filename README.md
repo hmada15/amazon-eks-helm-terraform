@@ -25,5 +25,14 @@ Using the same AWS account profile that provisioned the infrastructure, you can 
 `aws eks --region <aws-region> update-kubeconfig --name <cluster-name>`
 
 ## Deploy Application
-To deploy the application to you cluster, apply the directory called raw-manifests to create a Deployemnt and expose the application with an Ingress-NGINX Controller.
-1. `kubectl apply -f ./raw-manifests/`
+### Helm
+To deploy the application to you cluster, use helm to deploy the chart.
+
+1. Change to the chart directory - `cd helm/charts`
+2. Update the *values.yaml* accordingly 
+3. Install the chart with - `helm install webapp ./webapp --values ./webapp/values.yaml`
+
+### Native kubernates YAML files
+To deploy the application to you cluster, apply the directory called *raw-manifests* to create a Deployemnt and expose the application with an Ingress-NGINX controller.
+
+`kubectl apply -f ./raw-manifests/`

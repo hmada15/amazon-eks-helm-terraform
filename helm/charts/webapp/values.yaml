@@ -1,0 +1,54 @@
+namespace:
+  name: webapp-ns
+
+app:
+  name: webapp
+  replicas: 1
+  image: hmada15/eks-webapp:latest
+  port: 8080
+  resources:
+    requests:
+      memory: 128Mi
+      cpu: 100m
+    limits:
+      memory: 128Mi
+      cpu: 100m
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  ingressClassName: external-nginx
+  host: demo.example.com
+  secretName: demo-example.com
+
+hpa:
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+persistentVolumeClaim:
+  name: ebs-sc-pvc
+  accessModes: ReadWriteMany
+  mountPath: /data
+  resources:
+    requests:
+      storage: 4Gi
+
+storageClass:
+  name: ebs-sc
+  provisioner: ebs.csi.aws.com
+  volumeBindingMode: WaitForFirstConsumer
+  parameters:
+    type: gp3
+    fsType: ext4
+
+clusterIssuer:
+  enabled: true
+  name: http-01-production
+  acme:
+    email: your-email@example.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRefName: http-01-production-cluster-issuer
+    ingressClassName: external-nginx
