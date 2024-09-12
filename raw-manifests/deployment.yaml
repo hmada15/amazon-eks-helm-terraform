@@ -27,3 +27,10 @@ spec:
             limits:
               memory: 128Mi
               cpu: 100m
+          volumeMounts:
+            - name: persistent-storage
+              mountPath: /data
+      volumes:
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: ebs-sc-pvc
