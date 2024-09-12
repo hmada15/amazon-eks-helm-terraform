@@ -7,6 +7,7 @@ This repository contains source code to provision an EKS cluster in AWS using Te
 * AWS profile configured with CLI on local machine
 * [Terraform](https://www.terraform.io/)
 * [kubectl](https://kubernetes.io/docs/tasks/tools/)
+* [Helm](https://helm.sh/docs/intro/install/)
 
 ## Remote Backend State Configuration
 To configure remote backend state for your infrastructure, create an S3 bucket before running *terraform init*. In the case that you want to use local state persistence, update the *provider.tf* accordingly and don't bother with creating an S3 bucket.
