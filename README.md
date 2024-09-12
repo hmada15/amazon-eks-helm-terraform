@@ -5,6 +5,7 @@ This repository contains source code to provision an EKS cluster in AWS using Te
 ## Prerequisites
 * AWS account
 * AWS profile configured with CLI on local machine
+* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 * [Terraform](https://www.terraform.io/)
 * [kubectl](https://kubernetes.io/docs/tasks/tools/)
 * [Helm](https://helm.sh/docs/intro/install/)
